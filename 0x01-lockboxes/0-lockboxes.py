@@ -10,6 +10,7 @@ def canUnlockAll(boxes):
 
     unlockedOnes = [0]
     for id, box in enumerate(boxes):
+        # check if box is empty
         if not box:
             continue
         for val in box:
