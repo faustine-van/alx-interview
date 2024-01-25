@@ -36,7 +36,7 @@ if __name__ == "__main__":
                     else:
                         n_of_counts[i] = 1
                 print_statistics(sumAll, n_of_counts)
-                times.clear()
+                times = []
     except KeyboardInterrupt:
         print_statistics(sumAll, n_of_counts)
         sys.exit(0)
