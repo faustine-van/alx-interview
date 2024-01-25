@@ -30,13 +30,15 @@ if __name__ == "__main__":
             # after 10 line do this
             # print(times)
             for i in sorted(times):
+                if i is None or not isinstance(i, int):
+                    continue
                 if i in n_of_counts and i in codes:
                     n_of_counts[i] += 1
                 else:
                     n_of_counts[i] = 1
-                times = []
             print(f'File size: {sum(sumAll)}')
-            for key, val in n_of_counts.items():
-                for num in sorted(codes):
-                    if num == key:
+            for num, val in n_of_counts.items():
+                for code in sorted(codes):
+                    if code == num:
                         print(f'{num}: {val}')
+            times = []
