@@ -19,27 +19,34 @@ if __name__ == "__main__":
     sumAll = []
     times = []
     n_of_counts = {}
-    for line in sys.stdin:
-        if not re.search(match, line):
-            continue
-        line_number += 1
-        args = line.split()
-        sumAll.append(int(args[-1]))
-        times.append(int(args[-2]))
+    try:
+        for line in sys.stdin:
+            if not re.search(match, line):
+                continue
+            line_number += 1
+            args = line.split()
+            sumAll.append(int(args[-1]))
+            times.append(int(args[-2]))
 
-        if line_number % 10 == 0:
-            # after 10 line do this
-            # print(times)
-            for i in sorted(times):
-                if i is None or not isinstance(i, int):
-                    continue
-                if i in n_of_counts and i in codes:
-                    n_of_counts[i] += 1
-                else:
-                    n_of_counts[i] = 1
-            print(f'File size: {sum(sumAll)}')
-            for num, val in n_of_counts.items():
-                for code in sorted(codes):
-                    if code == num:
-                        print(f'{num}: {val}')
-            times = []
+            if line_number % 10 == 0:
+                # after 10 line do this
+                # print(times)
+                for i in sorted(times):
+                    if i is None or not isinstance(i, int):
+                        continue
+                    if i in n_of_counts and i in codes:
+                        n_of_counts[i] += 1
+                    else:
+                        n_of_counts[i] = 1
+                print(f'File size: {sum(sumAll)}')
+                for num, val in n_of_counts.items():
+                    for code in sorted(codes):
+                        if code == num:
+                            print(f'{num}: {val}')
+                times.clear()
+    except KeyboardInterrupt:
+        for num, val in n_of_counts.items():
+            for code in sorted(codes):
+                if code == num:
+                    print(f'{num}: {val}')
+        sys.exit(0)
