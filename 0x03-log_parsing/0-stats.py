@@ -24,7 +24,7 @@ if __name__ == "__main__":
             try:
                 sumAll += int(args[-1])
                 times.append(int(args[-2]))
-            except (ValueError, IndexError):
+            except (TypeError, ValueError, IndexError):
                 continue
             line_number += 1
             if line_number % 10 == 0:
