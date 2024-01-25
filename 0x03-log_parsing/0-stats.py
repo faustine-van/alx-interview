@@ -23,9 +23,9 @@ try:
         try:
             sumAll += int(args[-1])
             times.append(int(args[-2]))
-            line_number += 1
         except (ValueError, IndexError):
             continue
+        line_number += 1
         if line_number % 10 == 0:
             for i in sorted(times):
                 if i is None or not isinstance(i, int):
