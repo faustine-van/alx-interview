@@ -39,3 +39,4 @@ try:
 except KeyboardInterrupt:
     print_statistics(sumAll, n_of_counts)
     sys.exit(0)
+print_statistics(sumAll, n_of_counts)
