@@ -34,6 +34,9 @@ if __name__ == "__main__":
                     n_of_counts[i] += 1
                 else:
                     n_of_counts[i] = 1
+                times = []
             print(f'File size: {sum(sumAll)}')
             for key, val in n_of_counts.items():
-                print(f'{key}: {val}')
+                for num in sorted(codes):
+                    if num == key:
+                        print(f'{num}: {val}')
