@@ -4,6 +4,7 @@
 """
 import fileinput
 import re
+import sys
 
 
 if __name__ == "__main__":
@@ -18,7 +19,7 @@ if __name__ == "__main__":
     sumAll = []
     times = []
     n_of_counts = {}
-    for line in fileinput.input():
+    for line in sys.stdin:
         if not re.search(match, line):
             continue
         line_number += 1
