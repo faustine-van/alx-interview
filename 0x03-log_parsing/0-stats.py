@@ -20,10 +20,12 @@ n_of_counts = {}
 try:
     for line in sys.stdin:
         args = line.split()
-        sumAll += int(args[-1])
-        times.append(int(args[-2]))
-        line_number += 1
-
+        try:
+            sumAll += int(args[-1])
+            times.append(int(args[-2]))
+            line_number += 1
+        except (ValueError, IndexError):
+            continue
         if line_number % 10 == 0:
             for i in sorted(times):
                 if i is None or not isinstance(i, int):
