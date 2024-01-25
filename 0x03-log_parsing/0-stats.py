@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
         if line_number % 10 == 0:
             # after 10 line do this
-            print(times)
+            # print(times)
             for i in sorted(times):
                 if i in n_of_counts and i in codes:
                     n_of_counts[i] += 1
