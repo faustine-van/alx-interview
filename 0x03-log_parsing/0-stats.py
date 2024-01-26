@@ -48,3 +48,15 @@ def main():
                 lines_processed += 1
 
                 if lines_processed % 10 == 0:
+                    print_statistics(total_size, status_code_counts)
+
+    except KeyboardInterrupt:
+        # Handle keyboard interruption (CTRL + C)
+        print_statistics(total_size, status_code_counts)
+        sys.exit(0)
+
+    print_statistics(total_size, status_code_counts)
+
+
+if __name__ == "__main__":
+    main()
