@@ -1,46 +1,50 @@
 #!/usr/bin/python3
-"""script that reads stdin line by line
-   and computes metrics
-"""
+""""""
 import sys
+from collections import defaultdict
 
 
 def print_statistics(total_size, status_code_counts):
-    """print"""
-    if total_size > 0:
-        print(f"File size: {total_size}")
-    for code in sorted(status_code_counts):
-        if status_code_counts[code] > 0:
-            print(f"{code}: {status_code_counts[code]}")
+    """"""
+    print(f"Total file size: {total_size}")
+    for code in sorted([200, 301, 400, 401, 403, 404, 405, 500]):
+        count = status_code_counts[code]
+        print(f"{code}: {count}")
 
 
-if __name__ == "__main__":
-    line_number = 0
-    codes = [200, 301, 400, 401, 403, 404, 405, 500]
-    sumAll = 0
-    times = []
-    n_of_counts = {}
+def process_line(line):
+    """"""
+    parts = line.split()
+    start = parts[6].startswith('/projects/')
+    if len(parts) != 10 or parts[5] != '"GET' or not start:
+        return None
+
+    ip_address = parts[0]
+    status_code = parts[8]
+
+    try:
+        file_size = int(parts[9])
+    except (ValueError, IndexError):
+        return None
+
+    return ip_address, status_code, file_size
+
+
+def main():
+    """"""
+    total_size = 0
+    status_code_counts = defaultdict(int)
+    lines_processed = 0
+
     try:
         for line in sys.stdin:
-            args = line.split()
-            try:
-                sumAll += int(args[-1])
-                times.append(int(args[-2]))
-            except (ValueError, IndexError):
-                continue
-            # print(times)
-            line_number += 1
-            if line_number % 10 == 0:
-                for i in sorted(times):
-                    if i is None or not isinstance(i, int):
-                        continue
-                    if i in n_of_counts and i in codes:
-                        n_of_counts[i] += 1
-                    else:
-                        n_of_counts[i] = 1
-                print_statistics(sumAll, n_of_counts)
-                times = []
-    except KeyboardInterrupt:
-        print_statistics(sumAll, n_of_counts)
-        sys.exit(0)
-    print_statistics(sumAll, n_of_counts)
+            line = line.strip()
+            data = process_line(line)
+
+            if data:
+                ip_address, status_code, file_size = data
+                total_size += file_size
+                status_code_counts[status_code] += 1
+                lines_processed += 1
+
+                if lines_processed % 10 == 0:
