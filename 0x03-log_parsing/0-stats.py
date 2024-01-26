@@ -26,18 +26,21 @@ if __name__ == "__main__":
             try:
                 sumAll += int(args[-1])
                 times.append(int(args[-2]))
-            except (ValueError, IndexError):
-                continue
+            except BaseException:
+                pass
             # print(times)
             line_number += 1
             if line_number % 10 == 0:
-                for i in sorted(times):
-                    if i is None or not isinstance(i, int):
-                        continue
-                    if i in n_of_counts and i in codes:
-                        n_of_counts[i] += 1
-                    else:
-                        n_of_counts[i] = 1
+                try:
+                    for i in sorted(times):
+                        if i is None or not isinstance(i, int):
+                            continue
+                        if i in n_of_counts and i in codes:
+                            n_of_counts[i] += 1
+                        else:
+                            n_of_counts[i] = 1
+                except BaseException:
+                    pass
                 print_statistics(sumAll, n_of_counts)
                 times = []
     except KeyboardInterrupt:
