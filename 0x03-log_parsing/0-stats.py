@@ -13,6 +13,7 @@ def print_statistics(total_size, status_code_counts):
 
 
 if __name__ == "__main__":
+
     line_number = 0
     codes = [200, 301, 400, 401, 403, 404, 405, 500]
     sumAll = 0
@@ -30,14 +31,10 @@ if __name__ == "__main__":
                 status_code = int(args[-2])
                 if status_code in stats:
                     stats[status_code] += 1
-                else:
-                    stats[status_code] = 1
             except BaseException:
                 pass
-            # print(times)
             if line_number % 10 == 0:
                 print_statistics(sumAll, stats)
-                times = []
         print_statistics(sumAll, stats)
     except KeyboardInterrupt:
         print_statistics(sumAll, stats)
