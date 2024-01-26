@@ -7,9 +7,11 @@ import sys
 
 def print_statistics(total_size, status_code_counts):
     """print"""
-    print(f"File size: {total_size}")
+    if total_size > 0:
+        print(f"File size: {total_size}")
     for code in sorted(status_code_counts):
-        print(f"{code}: {status_code_counts[code]}")
+        if status_code_counts[code] > 0:
+            print(f"{code}: {status_code_counts[code]}")
 
 
 if __name__ == "__main__":
@@ -24,8 +26,9 @@ if __name__ == "__main__":
             try:
                 sumAll += int(args[-1])
                 times.append(int(args[-2]))
-            except (TypeError, ValueError, IndexError):
+            except (ValueError, IndexError):
                 continue
+            # print(times)
             line_number += 1
             if line_number % 10 == 0:
                 for i in sorted(times):
