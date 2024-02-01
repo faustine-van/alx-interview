@@ -7,6 +7,9 @@ def validUTF8(data):
     # keep number of continuation
     countBytes = 0
     for byte in data:
+        # ensure range of 1 byte (0 to 255)
+        byte %= 256
+
         if countBytes == 0:
             if byte >> 7 == 0b0:
                 # Single-byte character
