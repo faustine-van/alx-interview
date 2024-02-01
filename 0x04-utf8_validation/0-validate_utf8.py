@@ -5,7 +5,7 @@
 def validUTF8(data):
     """utf-8 functions"""
     try:
-        decode_data = bytes(data).decode('utf-8')
+        decode_data = bytes(data)
         return True
-    except (ValueError, UnicodeDecodeError):
+    except (ValueError):
         return False
