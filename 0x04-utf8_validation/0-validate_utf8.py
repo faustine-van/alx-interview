@@ -4,8 +4,8 @@
 
 def validUTF8(data):
     """utf-8 functions"""
-    for item in data:
-        if item < 0x80:
-            return True
-        else:
-            return False
+    try:
+        decode_data = bytes(data).decode('utf-8')
+        return True
+    except (ValueError, UnicodeDecodeError):
+        return False
