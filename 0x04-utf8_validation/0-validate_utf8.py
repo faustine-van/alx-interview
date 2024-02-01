@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """utf-8 validation"""
-from typing import List
 
 
 def validUTF8(data):
