@@ -7,5 +7,5 @@ def validUTF8(data):
     try:
         decode_data = bytes(data).decode('utf-8')
         return True
-    except (ValueError, UnicodeDecodeError):
+    except (TypeError, ValueError, UnicodeDecodeError):
         return False
