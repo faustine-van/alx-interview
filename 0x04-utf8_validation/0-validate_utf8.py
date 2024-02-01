@@ -7,7 +7,5 @@ def validUTF8(data):
     for item in data:
         if item < 0x80:
             return True
-        elif item < 0x0800:
-            return True
         else:
             return False
