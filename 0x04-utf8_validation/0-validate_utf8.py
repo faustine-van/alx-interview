@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""utf-8 validation"""i
+"""utf-8 validation"""
 from typing import List
 
 
