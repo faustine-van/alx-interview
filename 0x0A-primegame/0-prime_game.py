@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 """find winner for Prime Game"""
 
+
 def isWinner(x, nums):
     """Prime Game
       Return: winner
     """
+
     def is_prime(num):
-       """check if element in nums is prime"""
+        """check if element in nums is prime"""
         if num <= 1:
             return False
         if num <= 3:
